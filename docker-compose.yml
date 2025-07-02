@@ -1,0 +1,20 @@
+services:
+  # Servico da aplicacao FastAPI
+  app:
+    build: . # Constroi a imagem a partir do Dockerfile na raiz do projeto
+    container_name: minha-fastapi-app # nome do container
+    ports:
+      - "8000:8000" # Mapeia a porta 8000 do host para a porta 8000 do container
+    volumes:
+      - .:/app # Monta o diretorio atual em /app dentro do container
+               # As alteracoes no codigo serao refletidas automaticamente no container
+               # devido a flag --reload do uvicorn
+#    environment:
+#      - PYTHONUNBUFFERED=1 # Garante que os logs do Python aparecam imediatamente
+#    networks:
+#      - app-network
+
+# Redes customizadas (boa pratica, mesmo para um unico servico, para futuras expansoes)
+#networks:
+#  app-network:
+#    driver: bridge
